@@ -7,9 +7,12 @@ import { createInertiaApp } from '@inertiajs/vue3'
 import {resolvePageComponent} from "laravel-vite-plugin/inertia-helpers";
 import {ZiggyVue, Config as ZiggyConfig} from "ziggy-js";
 import {Ziggy} from "./ziggy";
+import { useTheme } from './composables/useTheme';
+
+const { initTheme } = useTheme();
+initTheme();
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Tagwall';
-
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
     resolve: (name) => resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob<DefineComponent>('./Pages/**/*.vue')),

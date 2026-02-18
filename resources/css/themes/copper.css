@@ -1,0 +1,11 @@
+:root,
+html[data-theme='copper'] {
+    --theme-text: oklch(85.17% 0.065 18.50);
+    --theme-background: oklch(21.83% 0.061 25.02);
+    --theme-primary: oklch(70.56% 0.142 30.96);
+    --theme-secondary: oklch(65.83% 0.086 19.64);
+    --theme-accent: oklch(79.93% 0.099 56.23);
+    --theme-muted: oklch(40.00% 0.050 20.00);
+    --theme-border: oklch(30.00% 0.040 15.00);
+}
+
