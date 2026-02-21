@@ -21,5 +21,8 @@ declare module '@inertiajs/core' {
         sharedPageProps: {
             auth: { user: { id: number; username: string, is_admin: bool, activated_at: Date } | null };
         };
+        flashDataType: {
+            success: string | null;
+        }
     }
 }

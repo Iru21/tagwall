@@ -123,4 +123,5 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
     'open_access' => env('OPEN_ACCESS', false),
+    'accounts_require_approval' => env('ACCOUNTS_REQUIRE_APPROVAL', true),
 ];

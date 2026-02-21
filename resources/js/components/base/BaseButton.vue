@@ -2,6 +2,7 @@
     <component :is="as" :disabled="loading || disabled"
                class="inline-flex items-center gap-2 rounded-xs px-4 py-2 cursor-pointer disabled:cursor-not-allowed"
                :class="[kindClasses]">
+        <slot name="icon"/>
         <span><slot/></span>
         <LoadingIcon class="ml-auto" v-if="loading"/>
     </component>
