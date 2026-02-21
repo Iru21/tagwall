@@ -10,9 +10,10 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name',
-        'email',
+        'username',
         'password',
+        'is_admin',
+        'activated_at'
     ];
 
     protected $hidden = [
@@ -23,8 +24,9 @@ class User extends Authenticatable
     protected function casts(): array
     {
         return [
-            'email_verified_at' => 'datetime',
+            'activated_at' => 'datetime',
             'password' => 'hashed',
+            'is_admin' => 'boolean',
         ];
     }
 }

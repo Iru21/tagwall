@@ -1,7 +1,5 @@
-import { PageProps as InertiaPageProps } from '@inertiajs/core';
-import { AxiosInstance } from 'axios';
-import { route as ZiggyRoute, Config as ZiggyConfig } from 'ziggy-js';
-import { PageProps as AppPageProps } from './';
+import {AxiosInstance} from 'axios';
+import {route as ZiggyRoute, Config as ZiggyConfig} from 'ziggy-js';
 
 declare global {
     interface Window {
@@ -12,23 +10,6 @@ declare global {
     let route: typeof ZiggyRoute;
 }
 
-declare module 'ziggy-js' {
-    interface RouteList {
-        "storage.local": [
-            {
-                "name": "path",
-                "required": true
-            }
-        ],
-        "storage.local.upload": [
-            {
-                "name": "path",
-                "required": true
-            }
-        ]
-    }
-}
-
 declare module 'vue' {
     interface ComponentCustomProperties {
         route: typeof ZiggyRoute;
@@ -36,5 +17,9 @@ declare module 'vue' {
 }
 
 declare module '@inertiajs/core' {
-    interface PageProps extends InertiaPageProps, AppPageProps {}
+    export interface InertiaConfig {
+        sharedPageProps: {
+            auth: { user: { id: number; username: string, is_admin: bool, activated_at: Date } | null };
+        };
+    }
 }

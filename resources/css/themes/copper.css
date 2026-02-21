@@ -1,11 +1,56 @@
 :root,
 html[data-theme='copper'] {
-    --theme-text: oklch(85.17% 0.065 18.50);
-    --theme-background: oklch(21.83% 0.061 25.02);
-    --theme-primary: oklch(70.56% 0.142 30.96);
-    --theme-secondary: oklch(65.83% 0.086 19.64);
-    --theme-accent: oklch(79.93% 0.099 56.23);
-    --theme-muted: oklch(40.00% 0.050 20.00);
-    --theme-border: oklch(30.00% 0.040 15.00);
+    --theme-primary-50: oklch(0.962 0.014 28.11);
+    --theme-primary-100: oklch(0.917 0.033 29.41);
+    --theme-primary-200: oklch(0.845 0.065 30.29);
+    --theme-primary-300: oklch(0.765 0.105 29.87);
+    --theme-primary-400: oklch(0.699 0.142 30.99);
+    --theme-primary-500: oklch(0.625 0.187 32.07);
+    --theme-primary-600: oklch(0.545 0.184 32.29);
+    --theme-primary-700: oklch(0.443 0.147 32.06);
+    --theme-primary-800: oklch(0.335 0.106 32.04);
+    --theme-primary-900: oklch(0.219 0.06 32.1);
+    --theme-primary-950: oklch(0.149 0.032 37.17);
+
+    --theme-secondary-50: oklch(0.956 0.01 17.5);
+    --theme-secondary-100: oklch(0.92 0.018 17.57);
+    --theme-secondary-200: oklch(0.829 0.04 18.03);
+    --theme-secondary-300: oklch(0.747 0.061 18.64);
+    --theme-secondary-400: oklch(0.66 0.085 19.6);
+    --theme-secondary-500: oklch(0.569 0.114 21.29);
+    --theme-secondary-600: oklch(0.487 0.103 21.6);
+    --theme-secondary-700: oklch(0.395 0.08 21.36);
+    --theme-secondary-800: oklch(0.308 0.058 20.97);
+    --theme-secondary-900: oklch(0.201 0.032 20.3);
+    --theme-secondary-950: oklch(0.148 0.017 19.24);
+
+    --theme-accent-50: oklch(0.964 0.017 61.98);
+    --theme-accent-100: oklch(0.935 0.031 57.92);
+    --theme-accent-200: oklch(0.863 0.065 56.89);
+    --theme-accent-300: oklch(0.799 0.099 56.23);
+    --theme-accent-400: oklch(0.732 0.136 54.55);
+    --theme-accent-500: oklch(0.673 0.164 50.3);
+    --theme-accent-600: oklch(0.577 0.143 49.95);
+    --theme-accent-700: oklch(0.474 0.115 50.63);
+    --theme-accent-800: oklch(0.351 0.081 51.06);
+    --theme-accent-900: oklch(0.229 0.046 53.78);
+    --theme-accent-950: oklch(0.164 0.028 59.93);
+
+    --theme-muted-50: oklch(94.09% 0.005 17.57);
+    --theme-muted-100: oklch(89.86% 0.01 17.5);
+    --theme-muted-200: oklch(80.49% 0.022 17.68);
+    --theme-muted-300: oklch(71.96% 0.036 18.05);
+    --theme-muted-400: oklch(63.62% 0.055 18.72);
+    --theme-muted-500: oklch(54.59% 0.057 19.1);
+    --theme-muted-600: oklch(47.16% 0.05 19.12);
+    --theme-muted-700: oklch(39.3% 0.041 19.09);
+    --theme-muted-800: oklch(31.55% 0.033 19.08);
+    --theme-muted-900: oklch(23.71% 0.024 19.03);
+    --theme-muted-950: oklch(18.95% 0.02 19.15);
+
+    --theme-background: var(--color-primary-900);
+    --theme-text: var(--color-primary-100);
+    --theme-border: var(--color-muted-700);
+    --theme-error: var(--color-rose-400);
 }
 
