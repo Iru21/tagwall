@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class LoginController extends Controller
@@ -19,6 +20,13 @@ class LoginController extends Controller
         ]);
 
         if (auth()->attempt($request->only('username', 'password'))) {
+            if(!auth()->user()->activated_at) {
+                auth()->logout();
+                return back()->withErrors([
+                    'username' => 'Your account is not activated yet.'
+                ]);
+            }
+
             $request->session()->regenerate();
             return redirect()->intended();
         }
