@@ -35,6 +35,6 @@ class RegisterController extends Controller
                 ' You can now log in.'
             ));
 
-        return redirect(route('login'));
+        return to_route('login');
     }
 }

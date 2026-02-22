@@ -22,4 +22,13 @@ createInertiaApp({
             .use(ZiggyVue)
             .mount(el)
     },
+    progress: {
+        color: 'var(--color-primary-400)',
+        showSpinner: true
+    },
+    defaults: {
+        visitOptions: (href, options) => {
+            return { viewTransition: true }
+        },
+    }
 })

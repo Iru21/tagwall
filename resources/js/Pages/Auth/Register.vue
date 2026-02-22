@@ -1,7 +1,5 @@
 <template>
-    <Head>
-        <title>Register</title>
-    </Head>
+    <Head title="Register" />
     <MainLayout>
         <BigLogo />
         <Card>

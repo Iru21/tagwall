@@ -1,7 +1,5 @@
 <template>
-    <Head>
-        <title>Home</title>
-    </Head>
+    <Head title="Home" />
     <AppLayout>
         asfsv
     </AppLayout>

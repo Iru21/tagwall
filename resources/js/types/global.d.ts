@@ -1,6 +1,13 @@
 import {AxiosInstance} from 'axios';
 import {route as ZiggyRoute, Config as ZiggyConfig} from 'ziggy-js';
 
+interface User {
+    id: number;
+    username: string,
+    is_admin: bool,
+    activated_at: Date
+}
+
 declare global {
     interface Window {
         axios: AxiosInstance;
@@ -19,7 +26,7 @@ declare module 'vue' {
 declare module '@inertiajs/core' {
     export interface InertiaConfig {
         sharedPageProps: {
-            auth: { user: { id: number; username: string, is_admin: bool, activated_at: Date } | null };
+            auth: { user: User | null };
         };
         flashDataType: {
             success: string | null;
