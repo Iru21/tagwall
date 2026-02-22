@@ -3,7 +3,7 @@
         <title>Login</title>
     </Head>
     <MainLayout>
-        <h1 class="text-9xl! text-center tracking-[.3em] mb-10!">Tagwall</h1>
+        <BigLogo />
         <Card>
             <h2>Login</h2>
             <Form #default="{ errors, processing }"
@@ -18,8 +18,10 @@
                     <input id="password" name="password" type="password" placeholder="..."/>
                 </label>
                 <span v-if="errors.username" class="text-error">{{ errors.username }}</span>
-                <BaseButton :loading="processing" type="submit">Login</BaseButton>
-                    <Link :href="route('register')">Don't have an account?</Link>
+                <Button :loading="processing" type="submit">
+                    Login
+                </Button>
+                <Link :href="route('register')">Don't have an account?</Link>
             </Form>
         </Card>
     </MainLayout>
@@ -27,9 +29,10 @@
 <script setup lang="ts">
 import Card from "@/components/Card.vue";
 import {Form, Head, Link, usePage} from "@inertiajs/vue3";
-import BaseButton from "@/components/base/BaseButton.vue";
+import Button from "@/components/base/Button.vue";
 import MainLayout from "@/components/layouts/MainLayout.vue";
 import Alert from "@/components/Alert.vue";
+import BigLogo from "@/components/BigLogo.vue";
 
 const success = usePage().flash.success
 </script>

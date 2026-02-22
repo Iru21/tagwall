@@ -1,18 +1,14 @@
 <template>
-    <header v-if="$slots.header">
-        <slot name="header"/>
+    <header v-if="$slots.header" class="bg-white/5 border-border py-3 border-b mb-8">
+        <div>
+            <slot name="header"/>
+        </div>
     </header>
-    <main>
+    <main class="grow flex flex-col">
         <div :class="{
-            'my-auto': !$slots.footer && !$slots.header
+            'my-auto': !$slots.header
         }">
             <slot/>
         </div>
     </main>
-    <footer v-if="$slots.footer">
-        <slot name="footer"/>
-    </footer>
 </template>
-<script setup lang="ts">
-
-</script>

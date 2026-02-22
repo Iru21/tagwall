@@ -66,23 +66,22 @@
     @apply transition-all duration-200 ease-in-out;
 }
 
-html {
+#app {
+    @apply min-h-screen w-full flex flex-1 flex-col items-center;
 
-    body {
-        @apply font-mono antialiased bg-background text-text;
+    header, main {
+        @apply flex w-full;
 
-        #app {
-            @apply min-h-screen w-full flex flex-col items-center;
-
-            header, footer, main {
-                @apply w-full max-w-4xl px-4 py-6;
-            }
-
-            main {
-                @apply grow flex flex-col;
-            }
+        > div {
+            @apply container mx-auto max-w-4xl px-4;
         }
     }
+
+    header nav ul a {
+        @apply tracking-widest;
+    }
+
+
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -102,22 +101,26 @@ h3 {
 }
 
 a {
-    @apply text-primary-400 hover:text-primary-500 underline;
+    @apply text-primary-400 hover:text-primary-500;
+}
+
+a:not(header a) {
+    @apply underline;
 }
 
 form {
     @apply flex flex-col gap-4;
-}
 
-label {
-    @apply flex flex-col gap-2 text-sm
-}
+    label {
+        @apply flex flex-col gap-2 text-sm
+    }
 
-input:where(
-[type="text"],
-[type="password"]
-) {
-    @apply rounded-xs border border-border bg-background text-text px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-400;
+    input:where(
+        [type="text"],
+        [type="password"]
+    ) {
+        @apply rounded-xs border border-border bg-background text-text px-3 py-2 focus:outline-none focus:ring-2 focus:ring-primary-400;
+    }
 }
 
 fieldset {

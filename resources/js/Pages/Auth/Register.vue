@@ -3,7 +3,7 @@
         <title>Register</title>
     </Head>
     <MainLayout>
-        <h1 class="text-9xl! text-center tracking-[.3em] mb-10!">Tagwall</h1>
+        <BigLogo />
         <Card>
             <h2>Register</h2>
             <Form #default="{ errors, processing }"
@@ -25,8 +25,8 @@
                 <Alert kind="note" v-if="accountsRequireApproval">
                     Accounts require approval by an administrator before they can be used.
                 </Alert>
-                <BaseButton :loading="processing" type="submit">Register</BaseButton>
-                    <Link :href="route('login')">Already have an account?</Link>
+                <Button :loading="processing" type="submit">Register</Button>
+                <Link :href="route('login')">Already have an account?</Link>
             </Form>
         </Card>
     </MainLayout>
@@ -34,9 +34,10 @@
 <script setup lang="ts">
 import Card from "@/components/Card.vue";
 import {Form, Head, Link} from "@inertiajs/vue3";
-import BaseButton from "@/components/base/BaseButton.vue";
+import Button from "@/components/base/Button.vue";
 import MainLayout from "@/components/layouts/MainLayout.vue";
 import Alert from "@/components/Alert.vue";
+import BigLogo from "@/components/BigLogo.vue";
 
 defineProps<{
     accountsRequireApproval: boolean
