@@ -13,6 +13,7 @@
 import InfoIcon from "@/components/icons/InfoIcon.vue";
 import {computed} from "vue";
 import CheckIcon from "@/components/icons/CheckIcon.vue";
+import ErrorIcon from "@/components/icons/ErrorIcon.vue";
 
 const kinds = {
     'note': {
@@ -24,6 +25,11 @@ const kinds = {
         title: 'Success',
         icon: CheckIcon,
         styles: 'border-green-300 bg-green-950/50 text-green-100'
+    },
+    'error': {
+        title: 'Error',
+        icon: ErrorIcon,
+        styles: 'border-rose-300 bg-rose-950/50 text-rose-100'
     }
 }
 

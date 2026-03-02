@@ -8,8 +8,18 @@
                 <ul class="ml-auto flex gap-4">
                     <template v-if="authed">
                         <li>
-                            <Link :href="route('home')">
-                                Dashboard
+                            <Link title="Dashboard" :href="route('home')">
+                                <UserIcon />
+                            </Link>
+                        </li>
+                        <li v-if="is_admin">
+                            <Link title="Admin Panel" :href="route('admin.index')">
+                                <CogIcon />
+                            </Link>
+                        </li>
+                        <li>
+                            <Link :href="route('logout')">
+                                <LogoutIcon />
                             </Link>
                         </li>
                     </template>
@@ -30,8 +40,13 @@
     </MainLayout>
 </template>
 <script setup lang="ts">
-import MainLayout from "@/components/layouts/MainLayout.vue";
+import MainLayout from "@/layouts/MainLayout.vue";
 import {Link, usePage} from "@inertiajs/vue3";
+import CogIcon from "@/components/icons/CogIcon.vue";
+import UserIcon from "@/components/icons/UserIcon.vue";
+import LogoutIcon from "@/components/icons/LogoutIcon.vue";
 
-const authed = usePage().props.auth.user !== null;
+const user = usePage().props.auth.user
+const authed = user !== null
+const is_admin = user?.is_admin
 </script>

@@ -18,14 +18,9 @@
         @apply flex w-full;
 
         > div {
-            @apply container mx-auto max-w-4xl px-4;
+            @apply container mx-auto max-w-6xl px-4;
         }
     }
-
-    header nav ul a {
-        @apply tracking-widest;
-    }
-
 
 }
 
@@ -34,23 +29,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h1 {
-    @apply text-4xl mb-4;
+    @apply text-4xl;
 }
 
 h2 {
-    @apply text-3xl mb-4;
+    @apply text-3xl;
 }
 
 h3 {
-    @apply text-2xl mb-2;
+    @apply text-2xl;
 }
 
 a {
-    @apply text-primary-400 hover:text-primary-500;
+    @apply flex items-center gap-2 text-primary-400 hover:text-primary-500;
 }
 
-a:not(header a) {
+a:not(nav a) {
     @apply underline;
+}
+
+nav a {
+    @apply tracking-widest;
 }
 
 form {
@@ -73,5 +72,21 @@ fieldset {
 
     legend, legend span {
         @apply font-bold flex items-center;
+    }
+}
+
+table {
+    @apply w-full;
+
+    th, td {
+        @apply border border-border px-4 py-2;
+    }
+
+    thead th {
+        @apply bg-background;
+    }
+
+    tbody tr:nth-child(even) {
+        @apply bg-background;
     }
 }
