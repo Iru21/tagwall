@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\TagController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -44,13 +45,24 @@ Route::group(
 
                         Route::group(
                             [
-                                'as' => 'post.',
-                                'prefix' => 'post'
+                                'as' => 'posts.',
+                                'prefix' => 'posts'
                             ],
                             function () {
-                                Route::get('/create', [PostController::class, 'create'])->name('create');
+                                Route::get('/', [PostController::class, 'create'])->name('create');
+                                Route::post('/', [PostController::class, 'store'])->name('store');
                             }
                         );
+                    }
+                );
+
+                Route::group(
+                    [
+                        'as' => 'tags.',
+                        'prefix' => 'tags'
+                    ],
+                    function () {
+                        Route::get('/', [TagController::class, 'index'])->name('index');
                     }
                 );
 
