@@ -13,14 +13,17 @@ class TagSeeder extends Seeder
      */
     public function run(): void
     {
-        $tags = [
-            "fruit/apple", "fruit/banana", "fruit/orange", "fruit/grape", "fruit/pear",
-            "vegetable/tomato", "vegetable/potato", "vegetable/carrot", "vegetable/onion",
-            "meat/chicken", "meat/beef", "meat/pork", "meat/fish",
-        ];
+        $is_prod = app()->environment('production');
+        if(!$is_prod) {
+            $tags = [
+                "fruit/apple", "fruit/banana", "fruit/orange", "fruit/grape", "fruit/pear",
+                "vegetable/tomato", "vegetable/potato", "vegetable/carrot", "vegetable/onion",
+                "meat/chicken", "meat/beef", "meat/pork", "meat/fish",
+            ];
 
-        foreach ($tags as $tag) {
-            Tag::create(['name' => $tag]);
+            foreach ($tags as $tag) {
+                Tag::create(['name' => $tag]);
+            }
         }
     }
 }
