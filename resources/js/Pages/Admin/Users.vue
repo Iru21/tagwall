@@ -12,7 +12,7 @@
                     <label for="search" class="w-full">
                         Search
                         <input id="search" name="search" type="text" v-model="filters.search" placeholder="..."
-                            />
+                        />
                     </label>
                     <label for="sort">
                         Sort by
@@ -34,49 +34,51 @@
                     <Button :loading="processing" kind="primary" class="h-fit self-end" type="submit">Filter</Button>
                 </Form>
             </div>
-            <table>
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Username</th>
-                    <th>Activated (?)</th>
-                    <th>Registered</th>
-                    <th>Actions</th>
-                </tr>
-                </thead>
-                <InfiniteScroll data="users" as="tbody" :buffer="200" preserve-url>
-                    <tr v-for="user in users.data" :key="user.id">
-                        <td>{{ user.id }}</td>
-                        <td>{{ user.username }}</td>
-                        <td>
-                            <template v-if="user.activated_at">
-                                {{ new Date(user.activated_at).toLocaleString('uk') }}
-                            </template>
-                            <template v-else class="text-muted/10">
-                                Not activated
-                            </template>
-                        </td>
-                        <td>{{ new Date(user.created_at).toLocaleString('uk') }}</td>
-                        <td>
-                            <div class="flex items-center gap-4" v-if="!user.is_admin">
-                                <Button v-if="user.activated_at" @click="deactivate(user.id)" kind="danger-dark"
-                                        size="sm">
-                                    Deactivate
-                                </Button>
-                                <Button v-else @click="activate(user.id)" type="submit" kind="primary-dark" size="sm">
-                                    Activate
-                                </Button>
-                                <Button @click="deleteUser(user.id)" kind="danger-dark" size="sm">
-                                    Delete
-                                </Button>
-                            </div>
-                            <div v-else class="text-muted-600 text-center">
-                                Admin
-                            </div>
-                        </td>
-                    </tr>
-                </InfiniteScroll>
-            </table>
+            <InfiniteScroll data="users" items-element="#table-body" :buffer="200">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Username</th>
+                            <th>Activated (?)</th>
+                            <th>Registered</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="table-body">
+                        <tr v-for="user in users.data" :key="user.id">
+                            <td>{{ user.id }}</td>
+                            <td>{{ user.username }}</td>
+                            <td>
+                                <template v-if="user.activated_at">
+                                    {{ new Date(user.activated_at).toLocaleString('uk') }}
+                                </template>
+                                <template v-else class="text-muted/10">
+                                    Not activated
+                                </template>
+                            </td>
+                            <td>{{ new Date(user.created_at).toLocaleString('uk') }}</td>
+                            <td>
+                                <div class="flex items-center gap-4" v-if="!user.is_admin">
+                                    <Button v-if="user.activated_at" @click="deactivate(user.id)" kind="danger-dark"
+                                            size="sm">
+                                        Deactivate
+                                    </Button>
+                                    <Button v-else @click="activate(user.id)" type="submit" kind="primary-dark" size="sm">
+                                        Activate
+                                    </Button>
+                                    <Button @click="deleteUser(user.id)" kind="danger-dark" size="sm">
+                                        Delete
+                                    </Button>
+                                </div>
+                                <div v-else class="text-muted-600 text-center">
+                                    Admin
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </InfiniteScroll>
         </Card>
     </AdminLayout>
 </template>

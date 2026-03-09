@@ -1,7 +1,6 @@
 @import 'tailwindcss';
 
 @import './theme.css';
-@import './animations.css';
 
 @source '../**/*.vue';
 @source '../**/*.ts';

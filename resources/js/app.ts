@@ -26,9 +26,4 @@ createInertiaApp({
         color: 'var(--color-primary-400)',
         showSpinner: true
     },
-    defaults: {
-        visitOptions: (href, options) => {
-            return { viewTransition: true }
-        },
-    }
 })
