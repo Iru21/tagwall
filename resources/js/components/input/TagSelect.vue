@@ -13,7 +13,7 @@
         </div>
         <div v-if="show" class="flex flex-col w-full">
             <div class="flex">
-                <input ref="tagSearch" type="text" placeholder="Search or add a new tag" class="w-full border-none" @keyup="search"/>
+                <input ref="tagSearch" type="text" placeholder="Search or add a new tag" class="w-full border-none focus:ring-0!" @keyup="search"/>
                 <Button type="button" @click="addNewTag" v-if="tagSearch?.value && !foundTags.length">Add</Button>
             </div>
             <div class="flex flex-wrap gap-2 px-3 py-2" v-if="foundTags.length">
