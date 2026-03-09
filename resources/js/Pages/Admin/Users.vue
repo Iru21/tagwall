@@ -87,7 +87,7 @@ import AdminLayout from "@/layouts/AdminLayout.vue";
 import {User} from "@/types/global";
 import Card from "@/components/Card.vue";
 import {Head, router, InfiniteScroll, Form} from "@inertiajs/vue3";
-import Button from "@/components/base/Button.vue";
+import Button from "@/components/input/Button.vue";
 import {ref} from "vue";
 import Alert from "@/components/Alert.vue";
 

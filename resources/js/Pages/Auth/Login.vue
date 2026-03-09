@@ -27,7 +27,7 @@
 <script setup lang="ts">
 import Card from "@/components/Card.vue";
 import {Form, Head, Link, usePage} from "@inertiajs/vue3";
-import Button from "@/components/base/Button.vue";
+import Button from "@/components/input/Button.vue";
 import MainLayout from "@/layouts/MainLayout.vue";
 import Alert from "@/components/Alert.vue";
 import BigLogo from "@/components/BigLogo.vue";

@@ -8,7 +8,7 @@
                 <ul class="ml-auto flex gap-4 items-center">
                     <template v-if="authed">
                         <li>
-                            <Button kind="primary" size="sm" as="a" :href="route('post.create')">
+                            <Button kind="primary" size="sm" as="a" :href="route('posts.create')">
                                 <template #icon>
                                     <PlusIcon />
                                 </template>
@@ -58,7 +58,7 @@ import {Link, usePage} from "@inertiajs/vue3";
 import CogIcon from "@/components/icons/CogIcon.vue";
 import UserIcon from "@/components/icons/UserIcon.vue";
 import LogoutIcon from "@/components/icons/LogoutIcon.vue";
-import Button from "@/components/base/Button.vue";
+import Button from "@/components/input/Button.vue";
 import PlusIcon from "@/components/icons/PlusIcon.vue";
 import TerminalIcon from "@/components/icons/TerminalIcon.vue";
 

@@ -17,7 +17,7 @@ import BigLogo from "@/components/BigLogo.vue";
 import Alert from "@/components/Alert.vue";
 import Card from "@/components/Card.vue";
 import {ref} from "vue";
-import Button from "@/components/base/Button.vue";
+import Button from "@/components/input/Button.vue";
 
 const props = defineProps<{
     status: number
