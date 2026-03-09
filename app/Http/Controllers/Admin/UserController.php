@@ -5,25 +5,25 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class UserController extends Controller
 {
     public function index(Request $request) {
-        $perPage = $request->input('perPage', 10);
-        $page = $request->input('page', 1);
         $search = $request->input('search', '');
         $sort = $request->input('sort', 'created_at');
         $order = $request->input('order', 'desc');
-        $users = User::query()
-            ->when($search, function ($query) use ($search) {
-                $query->where('username', 'like', "%$search%");
-            })
-            ->orderBy($sort, $order)
-            ->paginate($perPage, ['*'], 'page', $page)
-            ->withQueryString();
         return inertia('Admin/Users', [
-            'users' => $users,
-            'filters' => compact('perPage', 'page', 'search', 'sort', 'order'),
+            'users' => Inertia::scroll(function () use ($search, $sort, $order) {
+                return User::query()
+                    ->when($search, function ($query) use ($search) {
+                        $query->where('username', 'like', "%$search%")
+                            ->orWhere('id', 'like', "%$search%");
+                    })
+                    ->orderBy($sort, $order)
+                    ->paginate(20);
+            }),
+            'filters' => compact('search', 'sort', 'order'),
         ]);
     }
 

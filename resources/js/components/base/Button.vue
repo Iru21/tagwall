@@ -41,9 +41,9 @@ const kindClasses = computed(() => {
 const sizeClasses = computed(() => {
     switch (props.size) {
         case 'sm':
-            return 'px-2 py-1 text-sm'
+            return 'px-2 py-1 text-sm min-h-7.5 max-h-7.5'
         case 'md':
-            return 'px-4 py-2 text-base'
+            return 'px-4 py-2 text-base min-h-10 max-h-10'
     }
 })
 </script>

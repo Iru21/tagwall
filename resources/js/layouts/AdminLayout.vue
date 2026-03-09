@@ -2,7 +2,7 @@
     <AppLayout>
         <div class="flex gap-4">
             <Card class="h-fit">
-                <h2 class="mb-4">Admin Panel</h2>
+                <h2 class="mb-4 whitespace-nowrap">Admin Panel</h2>
                 <nav>
                     <ul>
                         <li>
