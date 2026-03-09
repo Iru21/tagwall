@@ -1,0 +1,52 @@
+:root,
+html[data-theme='ocean'] {
+    --theme-primary-50: oklch(0.947 0.017 259.43);
+    --theme-primary-100: oklch(0.905 0.029 254.68);
+    --theme-primary-200: oklch(0.81 0.061 252.38);
+    --theme-primary-300: oklch(0.714 0.097 248.43);
+    --theme-primary-400: oklch(0.612 0.086 248.35);
+    --theme-primary-500: oklch(0.519 0.073 248.76);
+    --theme-primary-600: oklch(0.439 0.062 248.62);
+    --theme-primary-700: oklch(0.37 0.052 248.41);
+    --theme-primary-800: oklch(0.294 0.041 248.1);
+    --theme-primary-900: oklch(0.216 0.03 247.44);
+    --theme-primary-950: oklch(0.164 0.024 247.94);
+    --theme-secondary-50: oklch(0.951 0.054 190.54);
+    --theme-secondary-100: oklch(0.911 0.104 190.95);
+    --theme-secondary-200: oklch(0.834 0.096 190.47);
+    --theme-secondary-300: oklch(0.757 0.088 190.78);
+    --theme-secondary-400: oklch(0.68 0.078 191.16);
+    --theme-secondary-500: oklch(0.604 0.07 190.47);
+    --theme-secondary-600: oklch(0.523 0.06 190.98);
+    --theme-secondary-700: oklch(0.425 0.049 191.59);
+    --theme-secondary-800: oklch(0.331 0.038 190.17);
+    --theme-secondary-900: oklch(0.23 0.027 191.35);
+    --theme-secondary-950: oklch(0.186 0.021 189.98);
+    --theme-accent-50: oklch(0.969 0.035 176.7);
+    --theme-accent-100: oklch(0.929 0.091 174.91);
+    --theme-accent-200: oklch(0.864 0.13 175.4);
+    --theme-accent-300: oklch(0.803 0.121 175.55);
+    --theme-accent-400: oklch(0.752 0.113 176.03);
+    --theme-accent-500: oklch(0.692 0.104 175.58);
+    --theme-accent-600: oklch(0.583 0.087 175.84);
+    --theme-accent-700: oklch(0.465 0.069 176.22);
+    --theme-accent-800: oklch(0.356 0.053 176.29);
+    --theme-accent-900: oklch(0.245 0.036 177.08);
+    --theme-accent-950: oklch(0.195 0.029 174.93);
+    --theme-muted-50: oklch(0.963 0.023 193.38);
+    --theme-muted-100: oklch(0.916 0.057 192.07);
+    --theme-muted-200: oklch(0.846 0.053 193.16);
+    --theme-muted-300: oklch(0.769 0.048 192.77);
+    --theme-muted-400: oklch(0.692 0.044 192.33);
+    --theme-muted-500: oklch(0.624 0.039 193.97);
+    --theme-muted-600: oklch(0.549 0.035 191.06);
+    --theme-muted-700: oklch(0.469 0.029 192.99);
+    --theme-muted-800: oklch(0.399 0.025 192.34);
+    --theme-muted-900: oklch(0.265 0.017 189.81);
+    --theme-muted-950: oklch(0.205 0.013 196.14);
+
+    --theme-background: var(--theme-primary-900);
+    --theme-text: var(--theme-secondary-100);
+    --theme-border: var(--theme-muted-700);
+    --theme-error: var(--color-rose-400);
+}
