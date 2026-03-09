@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class PostAttachment extends Model
 {
-    protected $fillable = ['post_id', 'path'];
+    protected $fillable = ['post_id', 'path', 'is_image'];
 
     public function post()
     {
@@ -18,7 +18,7 @@ class PostAttachment extends Model
     public function path()
     {
         return Attribute::make(
-            get: fn ($value) => Storage::disk('public')->url($value),
+            get: fn ($value) => Storage::disk('public')->url('attachments/' . $value)
         );
     }
 }
