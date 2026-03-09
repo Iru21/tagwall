@@ -5,8 +5,16 @@
                 <Link :href="route('home')" class="text-2xl tracking-[0.2em]">
                     Tagwall
                 </Link>
-                <ul class="ml-auto flex gap-4">
+                <ul class="ml-auto flex gap-4 items-center">
                     <template v-if="authed">
+                        <li>
+                            <Button kind="primary" size="sm" as="a" :href="route('post.create')">
+                                <template #icon>
+                                    <PlusIcon />
+                                </template>
+                                Add a post
+                            </Button>
+                        </li>
                         <li>
                             <Link title="Dashboard" :href="route('home')">
                                 <UserIcon />
@@ -45,6 +53,8 @@ import {Link, usePage} from "@inertiajs/vue3";
 import CogIcon from "@/components/icons/CogIcon.vue";
 import UserIcon from "@/components/icons/UserIcon.vue";
 import LogoutIcon from "@/components/icons/LogoutIcon.vue";
+import Button from "@/components/base/Button.vue";
+import PlusIcon from "@/components/icons/PlusIcon.vue";
 
 const user = usePage().props.auth.user
 const authed = user !== null

@@ -7,7 +7,7 @@
                 {{ error }}
             </Alert>
             <div class="flex gap-4">
-                <Form ref="filterFormRef" :action="route('admin.users')" method="get" class="flex-row! w-full"
+                <Form ref="filterFormRef" :action="route('admin.users.index')" method="get" class="flex-row! w-full"
                       #default="{ processing }" :options="{ preserveState: true, preserveScroll: true }">
                     <label for="search" class="w-full">
                         Search

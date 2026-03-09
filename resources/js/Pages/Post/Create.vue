@@ -1,8 +1,6 @@
 <template>
-    <Head title="Home" />
-    <AppLayout>
-        Home
-    </AppLayout>
+    <Head title="Create Post" />
+    <AppLayout></AppLayout>
 </template>
 <script setup lang="ts">
 import {Head} from "@inertiajs/vue3";

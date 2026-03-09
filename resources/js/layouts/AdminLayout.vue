@@ -6,7 +6,7 @@
                 <nav>
                     <ul>
                         <li>
-                            <Link :href="route('admin.users')">
+                            <Link :href="route('admin.users.index')">
                                 <UserIcon/>
                                 Users
                             </Link>
