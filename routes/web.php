@@ -38,10 +38,9 @@ Route::group(
                 Route::group(
                     [
                         'middleware' => 'auth',
-                        'prefix' => 'auth',
                     ],
                     function () {
-                        Route::any('/logout', [LoginController::class, 'destroy'])->name('logout');
+                        Route::any('/auth/logout', [LoginController::class, 'destroy'])->name('logout');
 
                         Route::group(
                             [

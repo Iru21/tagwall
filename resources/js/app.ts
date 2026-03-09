@@ -26,4 +26,9 @@ createInertiaApp({
         color: 'var(--color-primary-400)',
         showSpinner: true
     },
+    defaults: {
+        future: {
+            useDialogForErrorModal: true,
+        }
+    }
 })

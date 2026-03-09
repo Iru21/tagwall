@@ -3,7 +3,7 @@
         <legend>
             <span class="mx-2">
                 <component :is="settings.icon" class="mr-2"/>
-                {{ settings.title }}
+                {{ title ?? settings.title }}
             </span>
         </legend>
         <slot />
@@ -34,7 +34,8 @@ const kinds = {
 }
 
 const props = defineProps<{
-    kind: keyof typeof kinds
+    kind: keyof typeof kinds,
+    title?: string
 }>()
 
 const settings = computed(() => kinds[props.kind])

@@ -20,9 +20,14 @@
                                 <UserIcon />
                             </Link>
                         </li>
+                        <li>
+                            <Link title="Dashboard" :href="route('home')">
+                                <CogIcon />
+                            </Link>
+                        </li>
                         <li v-if="is_admin">
                             <Link title="Admin Panel" :href="route('admin.index')">
-                                <CogIcon />
+                                <TerminalIcon />
                             </Link>
                         </li>
                         <li>
@@ -55,6 +60,7 @@ import UserIcon from "@/components/icons/UserIcon.vue";
 import LogoutIcon from "@/components/icons/LogoutIcon.vue";
 import Button from "@/components/base/Button.vue";
 import PlusIcon from "@/components/icons/PlusIcon.vue";
+import TerminalIcon from "@/components/icons/TerminalIcon.vue";
 
 const user = usePage().props.auth.user
 const authed = user !== null
