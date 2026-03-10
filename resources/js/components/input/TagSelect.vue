@@ -12,9 +12,13 @@
             </Button>
         </div>
         <div v-if="show" class="flex flex-col w-full">
-            <div class="flex">
-                <input ref="tagSearch" type="text" placeholder="Search or add a new tag" class="w-full border-none focus:ring-0!" @keyup="search"/>
-                <Button type="button" @click="addNewTag" v-if="tagSearch?.value && !foundTags.length">Add</Button>
+            <div class="flex items-center w-full gap-2">
+                <input ref="tagSearch" type="text" placeholder="Search or add a new tag" class="w-full border-none focus:ring-0!"
+                       @keyup.enter="addNewTag" @input="search"/>
+                <Button type="button" kind="primary-dark" size="sm" @click="addNewTag"
+                        v-if="tagSearch?.value && !selectedTags.includes(tagSearch?.value || '')">
+                    <PlusIcon class="size-4!"/>
+                </Button>
             </div>
             <div class="flex flex-wrap gap-2 px-3 py-2" v-if="foundTags.length">
                 <Tag v-for="tag in foundTags" :key="tag" :name="tag" icon="plus" clickable @click="addTag(tag)"/>
@@ -30,6 +34,7 @@ import Tag from "@/components/Tag.vue";
 import Button from "@/components/input/Button.vue";
 import XIcon from "@/components/icons/XIcon.vue";
 import ChevronDownIcon from "@/components/icons/ChevronDownIcon.vue";
+import PlusIcon from "@/components/icons/PlusIcon.vue";
 
 const show = ref(false);
 const tagSearch = useTemplateRef('tagSearch')
@@ -48,14 +53,17 @@ const foundTags = ref<string[]>([])
 
 const search = () => {
     axios.get(route('tags.index', {search: tagSearch.value?.value})).then(res => {
-        foundTags.value = res.data.map((tag: {name: string}) => tag.name)
+        foundTags.value = res.data.map((tag: {name: string}) => tag.name).filter((tag: string) => !selectedTags.value.includes(tag))
     })
 }
 
 const addNewTag = () => {
-    const tag = tagSearch.value?.value
+    if(!tagSearch.value) return
+    const tag = tagSearch.value.value
     if (!tag) return
     addTag(tag)
+    tagSearch.value.value = ''
+    search()
 }
 
 const addTag = (tag: string) => {

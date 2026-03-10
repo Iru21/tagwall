@@ -3,6 +3,7 @@
         class="bg-primary-500/20 text-primary-200 px-2 py-1 rounded-sm inline-flex items-center gap-1 select-none"
           :class="clickableClasses"
     >
+        <slot/>
         {{ name }}
         <XIcon v-if="icon === 'x'" class="size-4!"/>
         <PlusIcon v-if="icon === 'plus'" class="size-4!"/>
