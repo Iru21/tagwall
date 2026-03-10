@@ -58,6 +58,16 @@ Route::group(
 
                 Route::group(
                     [
+                        'as' => 'posts.',
+                        'prefix' => 'posts'
+                    ],
+                    function () {
+                        Route::get('/{post}', [PostController::class, 'show'])->name('show');
+                    }
+                );
+
+                Route::group(
+                    [
                         'as' => 'tags.',
                         'prefix' => 'tags'
                     ],

@@ -24,10 +24,10 @@ class UserSeeder extends Seeder
         ]);
         $this->command->info('Admin user created with password: ' . $password);
 
-        if(!$is_prod) {
-            $this->command->info('Creating 100 regular users...');
-            User::factory()->createMany(100);
-            $this->command->info('100 regular users created');
-        }
+//        if(!$is_prod) {
+//            $this->command->info('Creating 100 regular users...');
+//            User::factory()->createMany(100);
+//            $this->command->info('100 regular users created');
+//        }
     }
 }

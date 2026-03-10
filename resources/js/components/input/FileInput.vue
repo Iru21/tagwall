@@ -1,6 +1,6 @@
 <template>
     <div>
-        <input :required="required" ref="input" type="file" :name="name" :id="id" class="hidden" multiple
+        <input :required="required" ref="input" type="file" :name="name" class="hidden" multiple
                @change="setFiles([...($event as any).target.files])">
         <div class="input h-auto! p-0! flex flex-col">
             <Button kind="primary-dark" type="button" @click="input?.click()">
@@ -24,7 +24,6 @@ import Tag from "@/components/Tag.vue";
 defineProps<{
     modelValue: File[] | null
     name: string
-    id: string
     required?: boolean
 }>()
 

@@ -10,6 +10,10 @@ class PostAttachment extends Model
 {
     protected $fillable = ['post_id', 'path', 'is_image'];
 
+    protected $casts = [
+        'is_image' => 'boolean',
+    ];
+
     public function post()
     {
         return $this->belongsTo(Post::class);

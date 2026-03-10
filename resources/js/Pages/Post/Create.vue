@@ -3,28 +3,32 @@
     <AppLayout>
         <Card class="flex flex-col gap-4">
             <h1>Create a post</h1>
-            <form @submit.prevent="submit">
+            <form @submit.prevent="submit" enctype="multipart/form-data">
                 <label for="title">
                     <span>
                         Title<span class="text-error">*</span>
                     </span>
                     <input required v-model="form.title" id="title" name="title" type="text" placeholder="..."/>
+                    <span v-if="form.errors.title" class="text-error">{{ form.errors.title }}</span>
                 </label>
-                <label for="content">
+                <label for="post_content">
                     <span>
                         Content<span class="text-error">*</span>
                     </span>
-                    <textarea required v-model="form.content" id="content" name="content" placeholder="..." rows="4"></textarea>
+                    <textarea required v-model="form.post_content" id="post_content" name="post_content" placeholder="..." rows="4"></textarea>
+                    <span v-if="form.errors.post_content" class="text-error">{{ form.errors.post_content }}</span>
                 </label>
                 <label for="tags">
                     Tags
                     <TagSelect v-model="form.tags" />
+                    <span v-if="form.errors.tags" class="text-error">{{ form.errors.tags }}</span>
                 </label>
                 <label for="attachments">
                     <span>
                         Attachments<span class="text-error">*</span>
                     </span>
-                    <FileInput required v-model="form.attachments" id="attachments" name="attachments" />
+                    <FileInput required v-model="form.attachments" id="attachments" name="attachments"/>
+                    <span v-if="form.errors.attachments" class="text-error">{{ form.errors.attachments }}</span>
                 </label>
                 <Button class="w-fit ml-auto" kind="primary" type="submit">Submit</Button>
             </form>
@@ -41,17 +45,22 @@ import FileInput from "@/components/input/FileInput.vue";
 
 const form = useForm<{
     title: string,
-    content: string,
+    post_content: string,
     tags: string[]
     attachments: File[]
 }>({
     title: '',
-    content: '',
+    post_content: '',
     tags: [],
     attachments: [],
 })
 
 const submit = () => {
-    console.log({...form})
+    form.post(route('posts.store'), {
+        preserveScroll: true,
+        onSuccess: () => {
+            form.reset()
+        }
+    })
 }
 </script>

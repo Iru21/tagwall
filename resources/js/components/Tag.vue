@@ -1,6 +1,6 @@
 <template>
     <component :is="href ? 'a' : 'span'" :href="href"
-        class="bg-primary-500/20 text-primary-200 px-2 py-1 rounded-sm inline-flex items-center gap-1 select-none"
+        class="bg-primary-500/20 text-primary-200 px-2 h-8 rounded-sm inline-flex items-center gap-1 select-none"
           :class="clickableClasses"
     >
         <slot/>

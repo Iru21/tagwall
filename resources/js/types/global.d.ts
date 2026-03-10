@@ -10,6 +10,33 @@ interface User {
     updated_at: string,
 }
 
+interface Post {
+    id: number;
+    user_id: number,
+    user?: User,
+    title: string,
+    content: string,
+    attachments?: Attachment[],
+    tags?: Tag[],
+    created_at: string,
+    updated_at: string,
+}
+
+interface Attachment {
+    id: number;
+    path: string,
+    is_image: bool,
+    created_at: string,
+    updated_at: string,
+}
+
+interface Tag {
+    id: number;
+    name: string,
+    created_at: string,
+    updated_at: string,
+}
+
 declare global {
     interface Window {
         axios: AxiosInstance;
