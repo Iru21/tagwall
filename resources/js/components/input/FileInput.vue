@@ -8,7 +8,8 @@
                 <span v-if="files.length" class="text-muted-400">({{ files.length }})</span>
             </Button>
             <div class="flex flex-wrap gap-2 p-2 text-muted-400" v-if="files.length">
-                <Tag v-for="file in files" :key="file.name" :name="file.name" icon="x" clickable @click="removeFile(file)">
+                <Tag v-for="file in files" :key="file.name" :name="file.name" icon="x" clickable @click="removeFile(file)"
+                    :show-tag-icon="false">
                     <img :alt="file.name" v-if="file.type.startsWith('image/')" :src="createObjectURL(file)"
                          class="size-6 object-cover rounded-sm"/>
                 </Tag>

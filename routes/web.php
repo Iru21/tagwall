@@ -1,10 +1,11 @@
 <?php
 
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\TagController;
+use App\Http\Controllers\TagSearchController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -72,7 +73,7 @@ Route::group(
                         'prefix' => 'tags'
                     ],
                     function () {
-                        Route::get('/', [TagController::class, 'index'])->name('index');
+                        Route::get('/', [TagSearchController::class, 'index'])->name('index');
                     }
                 );
 
@@ -96,6 +97,17 @@ Route::group(
                                 Route::post('/{user}/activate', [UserController::class, 'activate'])->name('activate');
                                 Route::post('/{user}/deactivate', [UserController::class, 'deactivate'])->name('deactivate');
                                 Route::delete('/{user}', [UserController::class, 'destroy'])->name('destroy');
+                            }
+                        );
+
+                        Route::group(
+                            [
+                                'as' => 'tags.',
+                                'prefix' => 'tags'
+                            ],
+                            function () {
+                                Route::get('/', [TagController::class, 'index'])->name('index');
+                                Route::delete('/{tag}', [TagController::class, 'destroy'])->name('destroy');
                             }
                         );
                     }

@@ -4,11 +4,17 @@
             <Card class="h-fit">
                 <h2 class="mb-4 whitespace-nowrap">Admin Panel</h2>
                 <nav>
-                    <ul>
+                    <ul class="flex flex-col gap-4">
                         <li>
                             <Link :href="route('admin.users.index')">
                                 <UserIcon/>
                                 Users
+                            </Link>
+                        </li>
+                        <li>
+                            <Link :href="route('admin.tags.index')">
+                                <TagIcon />
+                                Tags
                             </Link>
                         </li>
                     </ul>
@@ -25,4 +31,5 @@ import AppLayout from "@/layouts/AppLayout.vue";
 import Card from "@/components/Card.vue";
 import {Link} from "@inertiajs/vue3";
 import UserIcon from "@/components/icons/UserIcon.vue";
+import TagIcon from "@/components/icons/TagIcon.vue";
 </script>

@@ -19,9 +19,13 @@
                             <Link title="Dashboard" :href="route('home')">
                                 <UserIcon />
                             </Link>
+                        </li><li>
+                            <Link title="Calendar View" :href="route('home')">
+                                <CalendarIcon />
+                            </Link>
                         </li>
                         <li>
-                            <Link title="Dashboard" :href="route('home')">
+                            <Link title="Settings" :href="route('home')">
                                 <CogIcon />
                             </Link>
                         </li>
@@ -61,6 +65,7 @@ import LogoutIcon from "@/components/icons/LogoutIcon.vue";
 import Button from "@/components/input/Button.vue";
 import PlusIcon from "@/components/icons/PlusIcon.vue";
 import TerminalIcon from "@/components/icons/TerminalIcon.vue";
+import CalendarIcon from "@/components/icons/CalendarIcon.vue";
 
 const user = usePage().props.auth.user
 const authed = user !== null
