@@ -25,9 +25,17 @@ interface Post {
 interface Attachment {
     id: number;
     path: string,
+    alt: string,
+    is_nsfw: boolean,
     is_image: bool,
     created_at: string,
     updated_at: string,
+}
+
+interface AttachedFile {
+    file: File,
+    alt: string,
+    is_nsfw: boolean,
 }
 
 interface Tag {

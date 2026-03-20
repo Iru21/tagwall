@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Tag;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Inertia\Inertia;
 
@@ -28,7 +27,10 @@ class PostController extends Controller
             'tags' => 'array',
             'tags.*' => 'string|max:32',
             'attachments' => 'required|array',
-            'attachments.*' => 'file',
+            'attachments.*' => 'array',
+            'attachments.*.file' => 'required|file|max:10240',
+            'attachments.*.is_nsfw' => 'boolean',
+            'attachments.*.alt' => 'nullable|string|max:255',
         ]);
 
         $post = Post::create([
@@ -47,10 +49,12 @@ class PostController extends Controller
 
         $attachments = [];
         foreach ($request->attachments as $attachment) {
-            $path = $attachment->store('attachments', 'public');
+            $path = $attachment["file"]->store('attachments', 'public');
             $attachments[] = [
                 'path' => $path,
                 'is_image' => str_starts_with(Storage::disk('public')->mimeType($path), 'image/'),
+                'is_nsfw' => $attachment["is_nsfw"] ?? false,
+                'alt' => $attachment["alt"] ?? null,
             ];
         }
         $post->attachments()->createMany($attachments);

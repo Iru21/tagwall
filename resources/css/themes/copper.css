@@ -49,6 +49,7 @@ html[data-theme='copper'] {
     --theme-muted-950: oklch(18.95% 0.02 19.15);
 
     --theme-background: var(--color-primary-900);
+    --theme-card: oklch(0.3088 0.05 31.46);
     --theme-text: var(--color-secondary-100);
     --theme-border: var(--color-muted-700);
     --theme-error: var(--color-rose-400);

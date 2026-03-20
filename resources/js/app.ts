@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 window.axios = axios;
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -7,10 +6,12 @@ import {createApp, DefineComponent, h} from 'vue'
 import {createInertiaApp} from '@inertiajs/vue3'
 import {resolvePageComponent} from "laravel-vite-plugin/inertia-helpers";
 import {ZiggyVue} from "ziggy-js"
-import {useTheme} from './composables/useTheme';
 
-const {initTheme} = useTheme();
-initTheme();
+import 'viewerjs/dist/viewer.css'
+import VueViewer from 'v-viewer'
+
+import {useTheme} from './composables/useTheme';
+useTheme().initTheme();
 
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Tagwall';
 createInertiaApp({
@@ -20,6 +21,7 @@ createInertiaApp({
         createApp({render: () => h(App, props)})
             .use(plugin)
             .use(ZiggyVue)
+            .use(VueViewer)
             .mount(el)
     },
     progress: {

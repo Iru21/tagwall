@@ -34,6 +34,7 @@
             </form>
         </Card>
     </AppLayout>
+
 </template>
 <script setup lang="ts">
 import {Head, useForm} from "@inertiajs/vue3";
@@ -42,12 +43,13 @@ import Card from "@/components/Card.vue";
 import Button from "@/components/input/Button.vue";
 import TagSelect from "@/components/input/TagSelect.vue";
 import FileInput from "@/components/input/FileInput.vue";
+import {AttachedFile} from "@/types/global";
 
 const form = useForm<{
     title: string,
     post_content: string,
     tags: string[]
-    attachments: File[]
+    attachments: AttachedFile[],
 }>({
     title: '',
     post_content: '',

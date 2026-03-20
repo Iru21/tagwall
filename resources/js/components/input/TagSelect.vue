@@ -14,7 +14,7 @@
         <div v-if="show" class="flex flex-col w-full">
             <div class="flex items-center w-full gap-2">
                 <input ref="tagSearch" type="text" placeholder="Search or add a new tag" class="w-full border-none focus:ring-0!"
-                       @keyup.enter="addNewTag" @input="search"/>
+                       @keydown.enter.prevent="addNewTag" @input="search"/>
                 <Button type="button" kind="primary-dark" size="sm" @click="addNewTag"
                         v-if="tagSearch?.value && !selectedTags.includes(tagSearch?.value || '')">
                     <PlusIcon class="size-4!"/>

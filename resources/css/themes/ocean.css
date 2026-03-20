@@ -46,7 +46,8 @@ html[data-theme='ocean'] {
     --theme-muted-950: oklch(0.205 0.013 196.14);
 
     --theme-background: var(--theme-primary-900);
-    --theme-text: var(--theme-secondary-100);
+    --theme-card: oklch(0.3088 0.05 240);
+    --theme-text: var(--theme-secondary-50);
     --theme-border: var(--theme-muted-700);
     --theme-error: var(--color-rose-400);
 }

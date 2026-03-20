@@ -8,10 +8,11 @@ use Illuminate\Support\Facades\Storage;
 
 class PostAttachment extends Model
 {
-    protected $fillable = ['post_id', 'path', 'is_image'];
+    protected $fillable = ['post_id', 'path', 'is_image', 'alt', 'is_nsfw'];
 
     protected $casts = [
         'is_image' => 'boolean',
+        'is_nsfw' => 'boolean',
     ];
 
     public function post()
@@ -19,10 +20,17 @@ class PostAttachment extends Model
         return $this->belongsTo(Post::class);
     }
 
-    public function path()
+    public function path(): Attribute
     {
         return Attribute::make(
-            get: fn ($value) => Storage::disk('public')->url('attachments/' . $value)
+            get: fn ($value) => Storage::disk('public')->url($value)
+        );
+    }
+
+    public function alt(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => $value ?? pathinfo($this->path, PATHINFO_FILENAME)
         );
     }
 }

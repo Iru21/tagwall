@@ -58,6 +58,15 @@ form {
         @apply flex flex-col gap-2 text-sm
     }
 
+    label:has(
+        input:where(
+            [type="checkbox"],
+            [type="radio"]
+        )
+    ) {
+        @apply flex-row items-center justify-between;
+    }
+
     .input,
     select,
     textarea,
@@ -95,4 +104,8 @@ table {
     tbody tr:nth-child(even) {
         @apply bg-background;
     }
+}
+
+.viewer-container, .viewer-container * {
+    @apply transition-none;
 }

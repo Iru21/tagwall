@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('post_id')->constrained()->cascadeOnDelete();
             $table->string('path');
+            $table->text('alt')->nullable();
+            $table->boolean('is_nsfw')->default(false);
             $table->boolean('is_image')->default(false);
             $table->timestamps();
         });

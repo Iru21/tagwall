@@ -53,6 +53,7 @@
     --color-muted-950: var(--theme-muted-950);
 
     --color-background: var(--theme-background);
+    --color-card: var(--theme-card);
     --color-text: var(--theme-text);
     --color-border: var(--theme-border);
     --color-error: var(--theme-error);
