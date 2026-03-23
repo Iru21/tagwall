@@ -37,7 +37,7 @@ Route::group(
                 'middleware' => $isOpenAccess ? [] : ['auth'],
             ],
             function () {
-                Route::get('/', fn() => inertia('Home'))->name('home');
+                Route::get('/', [HomeController::class, 'index'])->name('home');
                 Route::get('/settings', [UserSettingsController::class, 'index'])->name('settings.index');
 
                 Route::group(
@@ -72,7 +72,7 @@ Route::group(
                         'prefix' => 'admin'
                     ],
                     function () {
-                        Route::get('/', [HomeController::class, 'index'])->name('index');
+                        Route::get('/', fn() => to_route('admin.users.index'))->name('index');
 
                         Route::group(
                             [

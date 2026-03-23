@@ -10,11 +10,11 @@ class HomeController extends Controller
 {
     public function index() {
         return inertia('Home', [
-            'posts' => Inertia::scroll(function($page) {
+            'posts' => Inertia::scroll(function() {
                 return Post::query()
                     ->with('user', 'tags', 'attachments')
                     ->latest()
-                    ->paginate(10, ['*'], 'page', $page);
+                    ->paginate();
             })
         ]);
     }
