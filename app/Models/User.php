@@ -10,11 +10,18 @@ class User extends Authenticatable
 {
     use Notifiable, HasFactory;
 
+    protected static function booted() {
+        static::created(function ($user) {
+            $user->settings()->create();
+        });
+    }
+
     protected $fillable = [
         'username',
         'password',
         'is_admin',
-        'activated_at'
+        'activated_at',
+        'settings',
     ];
 
     protected $hidden = [
@@ -29,5 +36,9 @@ class User extends Authenticatable
             'password' => 'hashed',
             'is_admin' => 'boolean',
         ];
+    }
+
+    public function settings() {
+        return $this->hasOne(UserSettings::class);
     }
 }

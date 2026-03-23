@@ -25,7 +25,7 @@
                             </Link>
                         </li>
                         <li>
-                            <Link title="Settings" :href="route('home')">
+                            <Link title="Settings" :href="route('settings.index')">
                                 <CogIcon />
                             </Link>
                         </li>
@@ -41,6 +41,11 @@
                         </li>
                     </template>
                     <template v-else>
+                        <li>
+                            <Link title="Settings" :href="route('settings.index')">
+                                <CogIcon />
+                            </Link>
+                        </li>
                         <li>
                             <Link :href="route('login')">
                                 Login

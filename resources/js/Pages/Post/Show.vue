@@ -54,6 +54,9 @@ import Alert from "@/components/Alert.vue";
 import {component as Viewer} from "v-viewer";
 import Button from "@/components/input/Button.vue";
 import RowsIcon from "@/components/icons/RowsIcon.vue"
+import {useSettingsStore} from "@/stores/settings";
+
+const { settings } = useSettingsStore()
 
 const props = defineProps<{
     post: Post
@@ -69,7 +72,7 @@ const unblurAll = () => {
     images.value = images.value.map(i => ({...i, is_nsfw: false}))
 }
 
-const selectedMode = ref<string[]>(['full'])
+const selectedMode = ref<string[]>(settings.grid_view ? ['grid'] : ['full'])
 const fullView = computed(() => selectedMode.value.includes('full'))
 
 const success = usePage().flash.success

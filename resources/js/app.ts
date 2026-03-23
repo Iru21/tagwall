@@ -13,6 +13,9 @@ import VueViewer from 'v-viewer'
 import {useTheme} from './composables/useTheme';
 useTheme().initTheme();
 
+import {createPinia} from "pinia";
+const pinia = createPinia()
+
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Tagwall';
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -20,6 +23,7 @@ createInertiaApp({
     setup({el, App, props, plugin}) {
         createApp({render: () => h(App, props)})
             .use(plugin)
+            .use(pinia)
             .use(ZiggyVue)
             .use(VueViewer)
             .mount(el)

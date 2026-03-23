@@ -39,6 +39,14 @@ h3 {
     @apply text-2xl;
 }
 
+h4 {
+    @apply text-xl;
+}
+
+h5 {
+    @apply text-lg;
+}
+
 a:not([data-button]) {
     @apply flex items-center gap-2 text-primary-400 hover:text-primary-500;
 }
@@ -74,11 +82,19 @@ form {
         [type="text"],
         [type="password"]
     ) {
-        @apply rounded-xs border border-border bg-background text-text px-3 py-2 h-10 focus:outline-none focus:ring-2 focus:ring-primary-400;
+        @apply rounded-xs border border-border bg-background text-text px-3 p-2 h-10 focus:outline-none focus:ring-2 focus:ring-primary-400;
     }
 
     textarea {
         @apply transition-colors min-h-10 h-auto;
+    }
+
+    .fieldset {
+        @apply flex flex-row gap-2;
+
+        label {
+            @apply flex-row gap-2 w-fit;
+        }
     }
 }
 

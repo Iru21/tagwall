@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\TagSearchController;
+use App\Http\Controllers\UserSettingsController;
 use App\Http\Middleware\IsAdmin;
 use Illuminate\Support\Facades\Route;
 
@@ -36,12 +38,15 @@ Route::group(
             ],
             function () {
                 Route::get('/', fn() => inertia('Home'))->name('home');
+                Route::get('/settings', [UserSettingsController::class, 'index'])->name('settings.index');
 
                 Route::group(
                     [
                         'middleware' => 'auth',
                     ],
                     function () {
+                        Route::put('/settings', [UserSettingsController::class, 'update'])->name('settings.update');
+
                         Route::any('/auth/logout', [LoginController::class, 'destroy'])->name('logout');
 
                         Route::group(
@@ -57,26 +62,8 @@ Route::group(
                     }
                 );
 
-                Route::group(
-                    [
-                        'as' => 'posts.',
-                        'prefix' => 'posts'
-                    ],
-                    function () {
-                        Route::get('/{post}', [PostController::class, 'show'])->name('show');
-                    }
-                );
-
-                Route::group(
-                    [
-                        'as' => 'tags.',
-                        'prefix' => 'tags'
-                    ],
-                    function () {
-                        Route::get('/', [TagSearchController::class, 'index'])->name('index');
-                    }
-                );
-
+                Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+                Route::get('/tags', [TagSearchController::class, 'index'])->name('tags.index');
 
                 Route::group(
                     [
@@ -85,7 +72,7 @@ Route::group(
                         'prefix' => 'admin'
                     ],
                     function () {
-                        Route::get('/', fn() => to_route('admin.users.index'))->name('index');
+                        Route::get('/', [HomeController::class, 'index'])->name('index');
 
                         Route::group(
                             [
