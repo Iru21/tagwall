@@ -11,7 +11,7 @@
             }">
                 <div :class="{
                     'flex flex-col gap-4': fullView,
-                    'grid grid-cols-2 gap-4': !fullView
+                    'grid grid-cols-2 gap-4': !fullView && images.length > 1,
                 }">
                     <div v-for="image in images" :key="image.path" class="w-full h-auto rounded-sm mb-4 relative">
                         <div v-if="image.is_nsfw" class="absolute top-0 left-0 size-full rounded-sm p-2
@@ -19,7 +19,7 @@
                             <Card class="flex flex-col gap-4 max-w-lg">
                                 <h2 class="text-2xl">NSFW / Sensitive</h2>
                                 <p>This image is marked as NSFW. Click either button below to view it.
-                                    You can change this setting <Link class="inline-flex!" :href="route('home')">here</Link>
+                                    You can change this setting <Link class="inline-flex!" :href="route('settings.index')">here</Link>
                                     if you want to always see NSFW content.</p>
                                 <div class="flex gap-4 self-end">
                                     <Button class="w-fit" kind="primary-dark" @click="unblur(image.id)">
@@ -36,9 +36,23 @@
                     </div>
                 </div>
             </Viewer>
-            <h1 class="mb-4">
-                {{ post.title }}
-            </h1>
+            <div class="flex items-center gap-2">
+                <h1>
+                    {{ post.title }}
+                </h1>
+                <Link :href="route('home')">
+                    {{ post.user!.username }}
+                </Link>
+                <p class="text-sm">
+                    {{ new Date(post.created_at).toLocaleString('uk') }}
+                </p>
+            </div>
+            <div class="flex gap-2 flex-wrap">
+                <Tag v-for="tag in post.tags" :key="tag.id" :name="tag.name" clickable />
+            </div>
+            <div>
+                {{ post.content }}
+            </div>
         </Card>
     </AppLayout>
 </template>
@@ -47,16 +61,17 @@ import {Head, Link, usePage} from "@inertiajs/vue3";
 import AppLayout from "@/layouts/AppLayout.vue";
 import {Attachment, Post} from "@/types/global";
 import Card from "@/components/Card.vue";
-import {computed, ref} from "vue";
+import {computed, ref, watch} from "vue";
 import Switch from "@/components/input/Switch.vue";
 import GridIcon from "@/components/icons/GridIcon.vue";
 import Alert from "@/components/Alert.vue";
 import {component as Viewer} from "v-viewer";
 import Button from "@/components/input/Button.vue";
 import RowsIcon from "@/components/icons/RowsIcon.vue"
-import {useSettingsStore} from "@/stores/settings";
+import {NSFWDisplay, useSettingsStore} from "@/stores/settings";
+import Tag from "@/components/Tag.vue";
 
-const { settings } = useSettingsStore()
+const { settings, setSettings } = useSettingsStore()
 
 const props = defineProps<{
     post: Post
@@ -72,7 +87,23 @@ const unblurAll = () => {
     images.value = images.value.map(i => ({...i, is_nsfw: false}))
 }
 
+if(settings.nsfw_display === NSFWDisplay.HIDE) {
+    images.value = images.value.filter(i => !i.is_nsfw)
+} else if (settings.nsfw_display === NSFWDisplay.ALWAYS) {
+    unblurAll()
+}
+
 const selectedMode = ref<string[]>(settings.grid_view ? ['grid'] : ['full'])
+watch(
+    selectedMode,
+    (newVal) => {
+        setSettings({
+            ...settings,
+            grid_view: newVal.includes('grid')
+        })
+    },
+    {immediate: true}
+)
 const fullView = computed(() => selectedMode.value.includes('full'))
 
 const success = usePage().flash.success
