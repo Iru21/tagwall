@@ -47,8 +47,9 @@ const toggleShow = () => {
         foundTags.value = []
     }
 }
+const model = defineModel<string[]>()
 
-const selectedTags = ref<string[]>([])
+const selectedTags = ref<string[]>(model.value || [])
 const foundTags = ref<string[]>([])
 
 const search = () => {
@@ -77,19 +78,12 @@ const removeTag = (tag: string) => {
     }
 }
 
-defineProps<{
-    modelValue: string | string[],
-}>()
-
-const emit = defineEmits<{
-    (e: 'update:modelValue', value: string | string[]): void
-}>()
 
 watch(
     () => selectedTags.value,
     () => {
         foundTags.value = foundTags.value.filter(tag => !selectedTags.value.includes(tag))
-        emit('update:modelValue', selectedTags.value)
+        model.value = selectedTags.value
     },
     {deep: true}
 )

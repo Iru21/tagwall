@@ -16,7 +16,6 @@ import type {Component} from "vue";
 const props = withDefaults(defineProps<{
     vertical?: boolean
     radio?: boolean
-    modelValue?: string[],
     options: {
         label?: string,
         icon?: Component,
@@ -26,16 +25,13 @@ const props = withDefaults(defineProps<{
 }>(), {
     vertical: false,
     radio: true,
-    modelValue: () => [],
     options: () => [],
     undeselectable: false,
 })
 
-const emit = defineEmits<{
-    (e: 'update:modelValue', value: string[]): void
-}>()
+const model = defineModel<string[]>()
 
-const selected = ref<string[]>(props.modelValue)
+const selected = ref<string[]>(model.value || [])
 
 watch(
     () => selected.value,
@@ -47,7 +43,7 @@ watch(
         if(props.radio && currentSelected.length > 1) {
             selected.value = [currentSelected[currentSelected.length - 1]]
         }
-        emit('update:modelValue', selected.value)
+        model.value = selected.value
     },
     {deep: true}
 )

@@ -31,13 +31,10 @@ import AttachmentEditModal from "@/components/modals/AttachmentEditModal.vue";
 import {AttachedFile} from "@/types/global";
 
 defineProps<{
-    modelValue: AttachedFile[] | null
     name: string
 }>()
 
-const emit = defineEmits<{
-    (e: 'update:modelValue', value: AttachedFile[] | null): void,
-}>()
+const model = defineModel<AttachedFile[] | null>()
 
 const input = useTemplateRef('input')
 
@@ -48,18 +45,18 @@ const setFiles = (newFiles: File[]) => {
         alt: file.name,
         is_nsfw: false,
     }))
-    emit('update:modelValue', files.value)
+    model.value = files.value
 }
 
 const updateFile = (file: AttachedFile) => {
     files.value = files.value.map(f => f.file === file.file ? file : f)
-    emit('update:modelValue', files.value)
+    model.value = files.value
     closeAttachmentEditModal()
 }
 
 const removeFile = (file: AttachedFile) => {
     files.value = files.value.filter(f => f !== file)
-    emit('update:modelValue', files.value)
+    model.value = files.value
     closeAttachmentEditModal()
 }
 
