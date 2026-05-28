@@ -11,7 +11,7 @@
 }
 
 #app {
-    @apply min-h-screen w-full flex flex-1 flex-col items-center;
+    @apply min-h-screen w-full flex flex-1 flex-col items-center pb-10;
 
     header, main {
         @apply flex w-full;

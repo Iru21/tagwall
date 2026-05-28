@@ -2,7 +2,7 @@
     <MainLayout>
         <template #header>
             <nav class="flex items-center justify-between">
-                <Link :href="route('home')" class="text-2xl tracking-[0.2em]">
+                <Link :href="settings.home_timeline ? route('home') : route('settings.index')" class="text-2xl tracking-[0.2em]">
                     Tagwall
                 </Link>
                 <ul class="ml-auto flex gap-4 items-center">
@@ -16,10 +16,16 @@
                             </Button>
                         </li>
                         <li>
+                            <Link title="Search" :href="route('search')">
+                                <SearchIcon />
+                            </Link>
+                        </li>
+                        <li v-if="settings.home_timeline">
                             <Link title="Dashboard" :href="route('home')">
                                 <UserIcon />
                             </Link>
-                        </li><li>
+                        </li>
+                        <li>
                             <Link title="Calendar View" :href="route('home')">
                                 <CalendarIcon />
                             </Link>
@@ -71,8 +77,12 @@ import Button from "@/components/input/Button.vue";
 import PlusIcon from "@/components/icons/PlusIcon.vue";
 import TerminalIcon from "@/components/icons/TerminalIcon.vue";
 import CalendarIcon from "@/components/icons/CalendarIcon.vue";
+import SearchIcon from "@/components/icons/SearchIcon.vue";
+import {getSettings} from "@/stores/settings";
 
 const user = usePage().props.auth.user
 const authed = user !== null
 const is_admin = user?.is_admin
+
+const settings = getSettings()
 </script>

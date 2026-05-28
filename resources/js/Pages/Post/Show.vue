@@ -36,7 +36,7 @@
                     </div>
                 </div>
             </Viewer>
-            <div class="flex items-center gap-2">
+            <div class="flex items-end gap-2">
                 <h1>
                     {{ post.title }}
                 </h1>
@@ -68,10 +68,8 @@ import Alert from "@/components/Alert.vue";
 import {component as Viewer} from "v-viewer";
 import Button from "@/components/input/Button.vue";
 import RowsIcon from "@/components/icons/RowsIcon.vue"
-import {NSFWDisplay, useSettingsStore} from "@/stores/settings";
+import {getSettings, NSFWDisplay, useSettingsStore} from "@/stores/settings";
 import Tag from "@/components/Tag.vue";
-
-const { settings, setSettings } = useSettingsStore()
 
 const props = defineProps<{
     post: Post
@@ -87,18 +85,21 @@ const unblurAll = () => {
     images.value = images.value.map(i => ({...i, is_nsfw: false}))
 }
 
-if(settings.nsfw_display === NSFWDisplay.HIDE) {
+const settings = getSettings()
+const {setSettings} = useSettingsStore()
+
+if(settings.value.nsfw_display === NSFWDisplay.HIDE) {
     images.value = images.value.filter(i => !i.is_nsfw)
-} else if (settings.nsfw_display === NSFWDisplay.ALWAYS) {
+} else if (settings.value.nsfw_display === NSFWDisplay.ALWAYS) {
     unblurAll()
 }
 
-const selectedMode = ref<string[]>(settings.grid_view ? ['grid'] : ['full'])
+const selectedMode = ref<string[]>(settings.value.grid_view ? ['grid'] : ['full'])
 watch(
     selectedMode,
     (newVal) => {
         setSettings({
-            ...settings,
+            ...settings.value,
             grid_view: newVal.includes('grid')
         })
     },

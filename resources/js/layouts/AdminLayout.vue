@@ -6,13 +6,17 @@
                 <nav>
                     <ul class="flex flex-col gap-4">
                         <li>
-                            <Link :href="route('admin.users.index')">
+                            <Link :href="route('admin.users.index')" :class="{
+                                'not-hover:text-primary-200!': route().current('admin.users.index'),
+                            }">
                                 <UserIcon/>
                                 Users
                             </Link>
                         </li>
                         <li>
-                            <Link :href="route('admin.tags.index')">
+                            <Link :href="route('admin.tags.index')" :class="{
+                                'not-hover:text-primary-200!': route().current('admin.tags.index'),
+                            }">
                                 <TagIcon />
                                 Tags
                             </Link>

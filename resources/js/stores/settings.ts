@@ -1,5 +1,5 @@
-import {defineStore} from "pinia";
-import {ref} from "vue";
+import {defineStore, storeToRefs} from "pinia";
+import {computed, ref} from "vue";
 import {usePage} from "@inertiajs/vue3";
 import axios from "axios";
 
@@ -43,11 +43,12 @@ export const useSettingsStore = defineStore('settings', () => {
         return validate(JSON.parse(item))
     }
 
-    const settings = ref<SettingsState>(getSettings())
+    const settings_ref = ref<SettingsState>(getSettings())
+    const settings = computed(() => settings_ref.value)
 
     function setSettings(newSettings: SettingsState) {
-        settings.value = newSettings
-        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(settings.value))
+        settings_ref.value = newSettings
+        localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(settings_ref.value))
     }
 
     const user = usePage().props.auth.user
@@ -62,6 +63,11 @@ export const useSettingsStore = defineStore('settings', () => {
 
     return {
         setSettings,
+        settings_ref,
         settings
     }
 });
+
+export function getSettings() {
+    return storeToRefs(useSettingsStore()).settings
+}
