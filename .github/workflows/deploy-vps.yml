@@ -17,5 +17,7 @@ jobs:
             cd /srv/www/tagwall.yuri.rocks
             git pull
             composer install
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             npm i
             npm build
