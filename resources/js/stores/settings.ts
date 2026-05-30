@@ -54,10 +54,15 @@ export const useSettingsStore = defineStore('settings', () => {
     const user = usePage().props.auth.user
     const authed = user !== null
     if(authed) {
-        axios.get(route('settings.index')).then(saved => {
-            const validated = validate(saved.data)
-            localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(validated))
-            setSettings(validated)
+        axios.get(route('settings.index'), {headers: {Accept: "application/json"}}).then(async saved => {
+            if(JSON.stringify(saved.data) === "[]") {
+                await axios.put(route('settings.update'), DEFAULT_SETTINGS, {headers: {Accept: "application/json"}}).catch(() => {
+                    //
+                })
+            }
+            setSettings(validate(saved.data))
+        }).catch(() => {
+            //
         })
     }
 

@@ -18,25 +18,45 @@
                     <Button class="w-fit self-end" kind="primary" :loading="form.processing" type="submit">Search</Button>
                 </form>
             </Card>
+            <InfiniteScroll v-if="posts.data.length" class="w-full" data="posts">
+                <Post v-for="post in posts.data" :key="post.id" :post="post" />
+            </InfiniteScroll>
+            <p v-else class="w-full text-center text-muted-300">No posts found.</p>
         </div>
     </AppLayout>
 </template>
 <script setup lang="ts">
 
 import AppLayout from "@/layouts/AppLayout.vue";
-import {Head, useForm} from "@inertiajs/vue3";
+import {Head, InfiniteScroll, useForm} from "@inertiajs/vue3";
 import Card from "@/components/Card.vue";
 import TagSelect from "@/components/input/TagSelect.vue";
 import Button from "@/components/input/Button.vue";
+import {Post as PostType} from "@/types/global";
+import Post from "@/components/Post.vue";
+
+const props = defineProps<{
+    posts: {
+        data: PostType[]
+    }
+    filters?: {
+        q?: string | null,
+        tags?: string[] | null,
+    }
+}>()
 
 const form = useForm<{
     q: string,
     tags: string[]
-}>()
+}>({
+    q: props.filters?.q ?? '',
+    tags: props.filters?.tags ?? [],
+})
 
 const submit = () => {
     form.get(route('search'), {
-        preserveScroll: true,
+        preserveState: true,
+        replace: true,
     })
 }
 </script>

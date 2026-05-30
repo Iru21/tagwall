@@ -18,6 +18,9 @@ class UserSettingsController extends Controller
 
     public function update(Request $request) {
         $request->user()->settings()->update(['settings' => json_encode($request->all())]);
+        if($request->wantsJson()) {
+            return $request->user()->settings->settings;
+        }
         return back();
     }
 }

@@ -26,11 +26,6 @@
                             </Link>
                         </li>
                         <li>
-                            <Link title="Calendar View" :href="route('home')">
-                                <CalendarIcon />
-                            </Link>
-                        </li>
-                        <li>
                             <Link title="Settings" :href="route('settings.index')">
                                 <CogIcon />
                             </Link>
@@ -76,7 +71,6 @@ import LogoutIcon from "@/components/icons/LogoutIcon.vue";
 import Button from "@/components/input/Button.vue";
 import PlusIcon from "@/components/icons/PlusIcon.vue";
 import TerminalIcon from "@/components/icons/TerminalIcon.vue";
-import CalendarIcon from "@/components/icons/CalendarIcon.vue";
 import SearchIcon from "@/components/icons/SearchIcon.vue";
 import {getSettings} from "@/stores/settings";
 
